@@ -9,7 +9,6 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../common/widgets/containers/rounded_container.dart';
 import '../../../utils/constants/colors.dart';
-import '../../../utils/constants/sizes.dart';
 import 'screens/widgets/exchange_rate.dart';
 
 class AnalyticsScreen extends StatelessWidget {
@@ -21,68 +20,68 @@ class AnalyticsScreen extends StatelessWidget {
     // final innerBoxIsScrolled = true;
     return Scaffold(
       backgroundColor: PColors.transparent,
-      body: Column(
-        children: [
-          SizedBox(
-            child: TRoundedContainer(
-              backgroundColor: isDark ? PColors.black : PColors.white,
-              useContainerGradient: false,
-              radius: 15,
-              elevation: 0.1,
-              child: Column(
-                children: [
-                  // APP BAR
-                  const TRoundedContainer(
-                    radius: 0,
-                    child: HomeAppBar(
-                      backgroundColor: PColors.transparent,
-                      //       const SystemUiOverlayStyle(
-                      //   systemNavigationBarColor: PColors.dark,
-                      //   systemNavigationBarIconBrightness: Brightness.dark,
-                      //   statusBarIconBrightness: Brightness.dark,
-                      //   // statusBarColor: PColors.dark,
-                      //   statusBarBrightness: Brightness.dark,
-                      // ),
-                      // usesGradient: true,
+      appBar: const HomeAppBar(
+        backgroundColor: PColors.transparent,
+        useContainerGradient: true,
+
+        //       const SystemUiOverlayStyle(
+        //   systemNavigationBarColor: PColors.dark,
+        //   systemNavigationBarIconBrightness: Brightness.dark,
+        //   statusBarIconBrightness: Brightness.dark,
+        //   // statusBarColor: PColors.dark,
+        //   statusBarBrightness: Brightness.dark,
+        // ),
+        // usesGradient: true,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              child: TRoundedContainer(
+                backgroundColor: isDark ? PColors.black : PColors.white,
+                useContainerGradient: false,
+                radius: 15,
+                elevation: 0.1,
+                child: Column(
+                  children: [
+                    // APP BAR
+
+                    // ANALYTICS CHART
+                    Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Column(
+                          children: [
+                            TRoundedContainer(
+                              backgroundColor:
+                                  isDark ? PColors.black : PColors.white,
+                              height: PHelperFunctions.screenHeight() / 4,
+                              radius: 0,
+                              // useContainerGradient: false,
+                            ),
+                            TRoundedContainer(
+                              backgroundColor:
+                                  isDark ? PColors.black : PColors.white,
+                              height: PHelperFunctions.screenHeight() / 7,
+                              radius: 15,
+                              useContainerGradient: false,
+                              // elevation: 2,
+                            ),
+                          ],
+                        ),
+                        const Positioned(
+                          top: 20,
+                          left: 15,
+                          right: 15,
+                          child: ChartColumnWidget(),
+                        )
+                      ],
                     ),
-                  ),
-                  // ANALYTICS CHART
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Column(
-                        children: [
-                          TRoundedContainer(
-                            backgroundColor:
-                                isDark ? PColors.black : PColors.white,
-                            height: PHelperFunctions.screenHeight() / 4,
-                            radius: 0,
-                            // useContainerGradient: false,
-                          ),
-                          TRoundedContainer(
-                            backgroundColor:
-                                isDark ? PColors.black : PColors.white,
-                            height: PHelperFunctions.screenHeight() / 7,
-                            radius: 15,
-                            useContainerGradient: false,
-                            // elevation: 2,
-                          ),
-                        ],
-                      ),
-                      const Positioned(
-                        top: 20,
-                        left: 15,
-                        right: 15,
-                        child: ChartColumnScreen(),
-                      )
-                    ],
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: ListView(
+            ListView(
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.all(0),
@@ -139,10 +138,10 @@ class AnalyticsScreen extends StatelessWidget {
                 )
               ],
             ),
-          ),
 
-          // TRANSACTION LEADERBBOARD
-        ],
+            // TRANSACTION LEADERBBOARD
+          ],
+        ),
       ),
     );
   }

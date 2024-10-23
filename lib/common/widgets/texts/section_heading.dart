@@ -1,4 +1,6 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 
 class PSectionHeading extends StatelessWidget {
   const PSectionHeading({
@@ -8,9 +10,10 @@ class PSectionHeading extends StatelessWidget {
     required this.title,
     this.buttonTitle = 'View all',
     this.onPressed,
+    this.useIcon = false,
   });
   final Color? textColor;
-  final bool showActionButton;
+  final bool showActionButton, useIcon;
   final String title, buttonTitle;
   final void Function()? onPressed;
 
@@ -32,6 +35,11 @@ class PSectionHeading extends StatelessWidget {
           TextButton(
             onPressed: onPressed,
             child: Text(buttonTitle),
+          ),
+        if (useIcon)
+          IconButton(
+            icon: const Icon(EvaIcons.listOutline),
+            onPressed: onPressed,
           )
       ],
     );

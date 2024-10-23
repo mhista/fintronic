@@ -35,7 +35,7 @@ class AnalyticsInfoContainer extends StatelessWidget {
       height: 160,
       useContainerGradient: usesGradient,
       useGlass: true,
-      // showBorder: false,
+      showBorder: false,
       elevation: !usesGradient
           ? isDark
               ? 2

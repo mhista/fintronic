@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 // import 'package:fintronic/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:fintronic/utils/theme/theme.dart';
 
+import 'bindings/general_bindings.dart';
 import 'utils/constants/colors.dart';
 
 class MyApp extends StatelessWidget {
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: GeneralBindings(),
       themeMode: ThemeMode.system,
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,

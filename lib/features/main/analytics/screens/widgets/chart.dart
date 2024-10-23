@@ -12,8 +12,8 @@ import '../../../../../common/widgets/containers/rounded_container.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../dummy_data.dart/analytics_dummy.dart';
 
-class ChartColumnScreen extends StatelessWidget {
-  const ChartColumnScreen({super.key});
+class ChartColumnWidget extends StatelessWidget {
+  const ChartColumnWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +175,7 @@ class ChartColumnScreen extends StatelessWidget {
                       xValueMapper: (data, _) => data.x,
                       yValueMapper: (data, _) => data.y,
                       width: 0.5,
-                      color: PColors.softGrey,
+                      color: isDark ? PColors.darkGrey : PColors.softGrey,
                       enableTooltip: false,
                       borderRadius: BorderRadius.circular(20),
                       dataSource: ColumnChartData.columnChartData),
@@ -184,7 +184,7 @@ class ChartColumnScreen extends StatelessWidget {
                       yValueMapper: (data, _) => data.y1,
                       // yAxisName: 'Income',
                       width: 0.5,
-                      color: PColors.primary,
+                      color: isDark ? PColors.primary : PColors.primary,
                       borderRadius: BorderRadius.circular(20),
                       dataSource: ColumnChartData.columnChartData)
                 ],

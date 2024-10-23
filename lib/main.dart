@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:fintronic/app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -22,5 +23,10 @@ Future<void> main() async {
   Get.put(AuthenticationRepository());
   // Todo: Initialize Authentication
 // Load all the material design / Themes / Localization / Bindings
-  runApp(const MyApp());
+  // runApp(
+  //   DevicePreview(builder: (context) => const MyApp()),
+  // );
+  runApp(
+    const MyApp(),
+  );
 }

@@ -36,6 +36,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: HomeAppBar(
         backgroundColor: isDark ? PColors.black : PColors.white,
+        containerBgColor: isDark ? PColors.black : PColors.white,
         usesGradient: true,
       ),
       body: SingleChildScrollView(

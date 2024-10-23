@@ -3,6 +3,7 @@ import 'package:fintronic/common/widgets/icons/glass_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 
 import '../../../../common/widgets/containers/glass_container.dart';
 import '../../../../common/widgets/containers/rounded_container.dart';
@@ -129,7 +130,7 @@ class BalanceWidget extends StatelessWidget {
                   children: [
                     KGlassIcon(
                         color: PColors.success,
-                        icon: Iconsax.money_recive,
+                        icon: IconsaxPlusLinear.money_add,
                         onPressed: () {}),
                     const SizedBox(
                       height: PSizes.sm,
@@ -169,7 +170,7 @@ class BalanceWidget extends StatelessWidget {
                   children: [
                     KGlassIcon(
                         color: PColors.darkerGrey,
-                        icon: Iconsax.money_change,
+                        icon: Iconsax.money_recive,
                         onPressed: () {}),
                     const SizedBox(
                       height: PSizes.sm,
@@ -188,12 +189,12 @@ class BalanceWidget extends StatelessWidget {
                   children: [
                     KGlassIcon(
                         color: PColors.darkerGrey,
-                        icon: EvaIcons.swap,
+                        icon: Iconsax.money_change,
                         onPressed: () {}),
                     const SizedBox(
                       height: PSizes.sm,
                     ),
-                    Text('Exchange',
+                    Text('Convert',
                         style: Theme.of(context).textTheme.headlineSmall!.apply(
                             color: isDark
                                 ? PColors.light.withOpacity(0.7)

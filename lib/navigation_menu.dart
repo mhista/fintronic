@@ -46,7 +46,7 @@ class NavigationMenu extends StatelessWidget {
                   icon: Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: KCircularIcon(
-                      onPressed: () {},
+                      onPressed: () => controller.selectedIndex.value = 2,
                       width: 50,
                       height: 50,
                       icon: Iconsax.activity,
