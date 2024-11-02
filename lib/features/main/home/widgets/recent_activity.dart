@@ -1,3 +1,6 @@
+import 'package:fintronic/common/animations/slide_animations/list_slide_animation.dart';
+import 'package:fintronic/common/animations/slide_animations/slide_animation.dart';
+import 'package:fintronic/common/widgets/layouts/list_layout.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/containers/rounded_container.dart';
@@ -10,9 +13,8 @@ import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/formatters/formatter.dart';
 import '../../../../utils/helpers/helper_functions.dart';
-import '../../analytics/dummy_data.dart/transaction_dummy_data.dart';
-import '../../analytics/models/transaction_model.dart';
-import '../home.dart';
+import '../../../analytics/dummy_data.dart/transaction_dummy_data.dart';
+import '../../../analytics/models/transaction_model.dart';
 
 class RecentActivityWidget extends StatelessWidget {
   const RecentActivityWidget({
@@ -23,97 +25,101 @@ class RecentActivityWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = PHelperFunctions.isDarkMode(context);
 
-    return Column(
-      children: [
-        PSectionHeading(
+    return Column(children: [
+      SlideAnimation(
+        child: PSectionHeading(
           title: 'Recent Activity',
           onPressed: () {},
         ),
-        ListView.separated(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              final transactions =
-                  TransactionDummyData.transactions.sublist(0, 2);
-              final data = transactions[index];
-              final date = PFormatter.formatDate(data.date);
-              return TRoundedContainer(
-                height: 70,
-                width: 330,
-                radius: 25,
-                backgroundColor: isDark ? PColors.dark : PColors.light,
-                useContainerGradient: false,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  // crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
-                      children: [
-                        // IMAGES STACK
-                        Stack(
-                          children: [
-                            PRoundedImage(
-                              imageUrl: data.bigImage!,
-                              width: 50,
-                              borderRadius: 100,
+      ),
+      ListLayout(
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          final transactions = TransactionDummyData.transactions.sublist(0, 2);
+          final data = transactions[index];
+          final date = PFormatter.formatDate(data.date);
+          return ListSlideAnimation(
+            index: index,
+            itemCount: transactions.length,
+            child: TRoundedContainer(
+              height: 70,
+              width: 330,
+              radius: 25,
+              backgroundColor: isDark ? PColors.dark : PColors.light,
+              useContainerGradient: false,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      // IMAGES STACK
+                      Stack(
+                        children: [
+                          PRoundedImage(
+                            imageUrl: data.bigImage!,
+                            width: 50,
+                            borderRadius: 100,
+                          ),
+                          Positioned(
+                            bottom: 2,
+                            right: 5,
+                            child: Stack(
+                              children: [
+                                const TRoundedContainer(
+                                  radius: 100,
+                                  height: 20,
+                                  width: 20,
+                                  backgroundColor: PColors.white,
+                                  useContainerGradient: false,
+                                ),
+                                TransactionImageType(data: data),
+                              ],
                             ),
-                            Positioned(
-                              bottom: 2,
-                              right: 5,
-                              child: Stack(
-                                children: [
-                                  const TRoundedContainer(
-                                    radius: 100,
-                                    height: 20,
-                                    width: 20,
-                                    backgroundColor: PColors.white,
-                                    useContainerGradient: false,
-                                  ),
-                                  TransactionImageType(data: data),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        // TITLE AND DESCRIPTION
-                        const SizedBox(
-                          width: PSizes.sm,
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(top: PSizes.spaceBtwItems),
-                          child: TransactionTitleSubtitle(
-                              isStatus: false,
-                              title: data.title,
-                              subTitle: data.description,
-                              status: data.status,
-                              transactionType: data.transactionType,
-                              type: data.type),
-                        )
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: PSizes.spaceBtwItems,
-                        right: PSizes.spaceBtwItems,
+                          ),
+                        ],
                       ),
-                      child: TransactionTitleSubtitle(
-                          title: '\$${data.price.toString()}',
-                          subTitle: date,
-                          status: data.status,
-                          transactionType: data.transactionType,
-                          type: data.type),
-                    )
-                  ],
-                ),
-              );
-            },
-            separatorBuilder: (context, index) => const SizedBox(
-                  height: PSizes.spaceBtwItems,
-                ),
-            itemCount: TransactionDummyData.transactions.sublist(0, 2).length)
-      ],
-    );
+                      // TITLE AND DESCRIPTION
+                      const SizedBox(
+                        width: PSizes.sm,
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: PSizes.spaceBtwItems),
+                        child: TransactionTitleSubtitle(
+                            isStatus: false,
+                            title: data.title,
+                            subTitle: data.description,
+                            status: data.status,
+                            transactionType: data.transactionType,
+                            type: data.type),
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: PSizes.spaceBtwItems,
+                      right: PSizes.spaceBtwItems,
+                    ),
+                    child: TransactionTitleSubtitle(
+                        title: '\$${data.price.toString()}',
+                        subTitle: date,
+                        status: data.status,
+                        transactionType: data.transactionType,
+                        type: data.type),
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+        itemCount: TransactionDummyData.transactions.sublist(0, 2).length,
+        scrollDirection: Axis.vertical,
+        seperatorBuilder: (context, index) => const SizedBox(
+          height: PSizes.spaceBtwItems,
+        ),
+      )
+    ]);
   }
 }
 

@@ -16,8 +16,8 @@ class TAppBarTheme {
       elevation: 0,
       centerTitle: false,
       scrolledUnderElevation: 0,
-      backgroundColor: PColors.light,
-      surfaceTintColor: PColors.light,
+      backgroundColor: PColors.white,
+      surfaceTintColor: PColors.white,
       iconTheme: IconThemeData(color: PColors.black, size: 24),
       actionsIconTheme: IconThemeData(color: PColors.black, size: 24),
       titleTextStyle: TextStyle(
@@ -27,8 +27,8 @@ class TAppBarTheme {
       elevation: 0,
       centerTitle: false,
       scrolledUnderElevation: 0,
-      backgroundColor: PColors.dark,
-      surfaceTintColor: PColors.dark,
+      backgroundColor: PColors.black,
+      surfaceTintColor: PColors.black,
       iconTheme: IconThemeData(color: PColors.black, size: 24),
       actionsIconTheme: IconThemeData(color: PColors.white, size: 24),
       titleTextStyle: TextStyle(

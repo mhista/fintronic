@@ -17,6 +17,8 @@ class PCircularImage extends StatelessWidget {
     this.fit = BoxFit.cover,
     this.overLayColor,
     this.useGradient = false,
+    this.borderRadius = 100,
+    this.applyImageRadius = true,
   });
 
   final String imageUrl;
@@ -25,6 +27,8 @@ class PCircularImage extends StatelessWidget {
   final Color? backgroundColor;
   final BoxFit? fit;
   final Color? overLayColor;
+  final double borderRadius;
+  final bool applyImageRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +42,16 @@ class PCircularImage extends StatelessWidget {
       backgroundColor:
           backgroundColor ?? (isDark ? PColors.black : PColors.white),
       child: Center(
-        child: Image(
-            image: isNetworkImage
-                ? NetworkImage(imageUrl)
-                : AssetImage(imageUrl) as ImageProvider,
-            color: overLayColor),
+        child: ClipRRect(
+          borderRadius: applyImageRadius
+              ? BorderRadius.circular(borderRadius)
+              : BorderRadius.zero,
+          child: Image(
+              image: isNetworkImage
+                  ? NetworkImage(imageUrl)
+                  : AssetImage(imageUrl) as ImageProvider,
+              color: overLayColor),
+        ),
       ),
     );
   }

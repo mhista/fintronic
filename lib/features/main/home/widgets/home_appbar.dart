@@ -32,9 +32,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       useContainerGradient: useContainerGradient,
       backgroundColor: containerBgColor,
       radius: 0,
+      // padding: const EdgeInsets.only(
+      //   bottom: PSizes.sm,
+      // ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: PSizes.sm,
+        padding: const EdgeInsets.only(
+          left: PSizes.sm,
+          right: PSizes.sm,
         ),
         child: PAppBar(
           backgroundColor: backgroundColor,
@@ -115,5 +119,6 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(PDeviceUtils.getAppBarHeight());
+  Size get preferredSize =>
+      Size.fromHeight(PDeviceUtils.getAppBarHeight() + PSizes.sm);
 }

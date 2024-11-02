@@ -1,6 +1,10 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:fintronic/common/widgets/icons/glass_icon.dart';
+import 'package:fintronic/features/main/home/anime.dart';
+import 'package:fintronic/features/main/transaction/request/screens/request_money.dart';
+import 'package:fintronic/features/main/transaction/transfer/screens/transfer.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
@@ -75,24 +79,24 @@ class BalanceWidget extends StatelessWidget {
                     const SizedBox(
                       width: PSizes.sm,
                     ),
-                    TGlassContainer(
-                      height: 25,
-                      width: 65,
-                      radius: 32,
-                      showBorder: true,
-                      borderColor: PColors.transparent,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text('USDT',
-                              style: Theme.of(context).textTheme.bodyLarge!),
-                          const Icon(
-                            Iconsax.arrow_down_1,
-                            size: 16,
-                          )
-                        ],
-                      ),
-                    )
+                    // TGlassContainer(
+                    //   height: 25,
+                    //   width: 65,
+                    //   radius: 32,
+                    //   showBorder: true,
+                    //   borderColor: PColors.transparent,
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //     children: [
+                    //       Text('USDT',
+                    //           style: Theme.of(context).textTheme.bodyLarge!),
+                    //       const Icon(
+                    //         Iconsax.arrow_down_1,
+                    //         size: 16,
+                    //       )
+                    //     ],
+                    //   ),
+                    // )
                   ],
                 ),
                 const SizedBox(
@@ -129,7 +133,7 @@ class BalanceWidget extends StatelessWidget {
                 Column(
                   children: [
                     KGlassIcon(
-                        color: PColors.success,
+                        color: PColors.darkGrey,
                         icon: IconsaxPlusLinear.money_add,
                         onPressed: () {}),
                     const SizedBox(
@@ -150,9 +154,9 @@ class BalanceWidget extends StatelessWidget {
                 Column(
                   children: [
                     KGlassIcon(
-                        color: PColors.darkGrey,
+                        color: PColors.darkerGrey,
                         icon: Iconsax.money_send,
-                        onPressed: () {}),
+                        onPressed: () => Get.to(() => const TransferScreen())),
                     const SizedBox(
                       height: PSizes.sm,
                     ),
@@ -169,9 +173,9 @@ class BalanceWidget extends StatelessWidget {
                 Column(
                   children: [
                     KGlassIcon(
-                        color: PColors.darkerGrey,
+                        color: PColors.success.withOpacity(0.8),
                         icon: Iconsax.money_recive,
-                        onPressed: () {}),
+                        onPressed: () => Get.to(() => const RequestMoney())),
                     const SizedBox(
                       height: PSizes.sm,
                     ),
@@ -188,9 +192,9 @@ class BalanceWidget extends StatelessWidget {
                 Column(
                   children: [
                     KGlassIcon(
-                        color: PColors.darkerGrey,
+                        color: PColors.success,
                         icon: Iconsax.money_change,
-                        onPressed: () {}),
+                        onPressed: () => Get.to(() => const AnimationScreen())),
                     const SizedBox(
                       height: PSizes.sm,
                     ),

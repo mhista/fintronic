@@ -12,22 +12,34 @@ class GradientButton extends StatelessWidget {
     this.radius = 20,
     required this.child,
     required this.onPressed,
+    this.showBorder = false,
+    this.borderWidth = 0.5,
+    this.useContainerGradient = true,
+    this.backgroundColor,
   });
   final double width, height, radius;
   final Widget child;
+  final bool showBorder, useContainerGradient;
+  final double borderWidth;
+  final Color? backgroundColor;
+
   final Function() onPressed;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPressed,
       child: TRoundedContainer(
+        backgroundColor: backgroundColor,
         width: width,
         height: height,
         radius: radius,
-        gradient: PColors.generalGradient,
+        gradient: useContainerGradient ? PColors.generalGradient : null,
+        showBorder: showBorder,
+        borderWidth: borderWidth,
         useContainerGradient: false,
         child: Center(
-         child: child,),
+          child: child,
+        ),
       ),
     );
   }

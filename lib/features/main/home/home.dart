@@ -1,12 +1,13 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:fintronic/common/animations/slide_animations/slide_animation.dart';
 import 'package:fintronic/common/widgets/appbar/appBar.dart';
 import 'package:fintronic/common/widgets/containers/rounded_container.dart';
 import 'package:fintronic/common/widgets/icons/circular_icon.dart';
 import 'package:fintronic/common/widgets/images/circular_images.dart';
 import 'package:fintronic/common/widgets/images/edge_rounded_images.dart';
 import 'package:fintronic/common/widgets/texts/section_heading.dart';
-import 'package:fintronic/features/main/analytics/dummy_data.dart/transaction_dummy_data.dart';
-import 'package:fintronic/features/main/analytics/models/transaction_model.dart';
+import 'package:fintronic/features/analytics/dummy_data.dart/transaction_dummy_data.dart';
+import 'package:fintronic/features/analytics/models/transaction_model.dart';
 import 'package:fintronic/utils/constants/enums.dart';
 import 'package:fintronic/utils/constants/image_strings.dart';
 import 'package:fintronic/utils/constants/text_strings.dart';
@@ -49,12 +50,12 @@ class HomeScreen extends StatelessWidget {
                 height: PSizes.spaceBtwSections,
               ),
               // BALANCE CONTAINER
-              BalanceWidget(isDark: isDark),
+              SlideAnimation(child: BalanceWidget(isDark: isDark)),
               const SizedBox(
                 height: PSizes.spaceBtwSections,
               ),
               // URGENT NOTIFICATION
-              const UrgentNotification(),
+              const SlideAnimation(child: UrgentNotification()),
               const SizedBox(
                 height: PSizes.sm,
               ),

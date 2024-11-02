@@ -22,9 +22,11 @@ class TRoundedContainer extends StatelessWidget {
     this.elevation = 0,
     this.useContainerGradient = true,
     this.useGlass = false,
+    this.intensity = 0,
+    this.borderWidth = 1,
   });
   final double? width, height;
-  final double radius;
+  final double radius, borderWidth;
   final Color borderColor;
   final Color? backgroundColor;
   final Widget? child;
@@ -32,7 +34,7 @@ class TRoundedContainer extends StatelessWidget {
   final bool showBorder, useContainerGradient, useGlass;
   final Gradient? gradient;
   final List<BoxShadow>? shadow;
-  final double elevation;
+  final double elevation, intensity;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,7 @@ class TRoundedContainer extends StatelessWidget {
       type: MaterialType.canvas,
       borderRadius: BorderRadius.circular(radius),
       elevation: elevation,
+      color: backgroundColor,
       child: useGlass
           ? GlassContainer.clearGlass(
               width: width,
@@ -52,9 +55,9 @@ class TRoundedContainer extends StatelessWidget {
                       begin: AlignmentDirectional.centerStart,
                       end: AlignmentDirectional.centerEnd,
                       colors: [
-                          PColors.primary.withOpacity(0.3),
-                          PColors.primary.withOpacity(0.2),
-                          PColors.primary.withOpacity(0.1)
+                          PColors.primary.withOpacity(0.3 + intensity),
+                          PColors.primary.withOpacity(0.2 + intensity),
+                          PColors.primary.withOpacity(0.1 + intensity),
                         ])
                   : gradient,
               borderRadius: BorderRadius.circular(radius),
@@ -73,15 +76,17 @@ class TRoundedContainer extends StatelessWidget {
                           begin: AlignmentDirectional.centerStart,
                           end: AlignmentDirectional.centerEnd,
                           colors: [
-                              PColors.primary.withOpacity(0.3),
-                              PColors.primary.withOpacity(0.2),
-                              PColors.primary.withOpacity(0.1)
+                              PColors.primary.withOpacity(0.3 + intensity),
+                              PColors.primary.withOpacity(0.2 + intensity),
+                              PColors.primary.withOpacity(0.1 + intensity)
                             ])
                       : gradient,
                   borderRadius: BorderRadius.circular(radius),
                   color: backgroundColor ??
                       (isDark ? PColors.dark : PColors.light),
-                  border: showBorder ? Border.all(color: borderColor) : null,
+                  border: showBorder
+                      ? Border.all(color: borderColor, width: borderWidth)
+                      : null,
                   boxShadow: shadow),
               child: child,
             ),

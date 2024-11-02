@@ -1,3 +1,4 @@
+import 'package:fintronic/common/widgets/containers/rounded_container.dart';
 import 'package:flutter/material.dart';
 import 'package:fintronic/utils/constants/sizes.dart';
 
@@ -21,32 +22,67 @@ class PSettingsMenuTile extends StatelessWidget {
   final bool addSpacing;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListTile(
-          leading: Icon(
-            icon,
-            size: 28,
-            color: PColors.primary,
+    return TRoundedContainer(
+      useContainerGradient: false,
+      backgroundColor: PColors.transparent,
+      borderColor: PColors.grey.withOpacity(0.3),
+      margin: const EdgeInsets.only(bottom: PSizes.spaceBtwInputFields),
+      showBorder: true,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              TRoundedContainer(
+                useContainerGradient: false,
+                backgroundColor: PColors.transparent,
+                borderColor: PColors.grey.withOpacity(0.3),
+                height: 48,
+                width: 48,
+                margin: const EdgeInsets.all(2),
+                showBorder: true,
+                child: Icon(
+                  icon,
+                  size: 20,
+                  // color: PColors.primary,
+                ),
+              ),
+              const SizedBox(
+                width: PSizes.spaceBtwItems,
+              ),
+              // onTap: onTap,
+              Text(
+                title,
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .apply(fontWeightDelta: -1),
+              ),
+            ],
           ),
-          title: Text(
-            title,
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          subtitle: addSubtitle
-              ? Text(
-                  subtitle,
-                  style: Theme.of(context).textTheme.labelMedium,
-                )
-              : null,
-          trailing: trailing,
-          onTap: onTap,
-        ),
-        if (addSpacing)
-          const SizedBox(
-            height: PSizes.spaceBtwItems,
+
+          Row(
+            children: [
+              if (trailing != null) trailing!,
+              if (trailing == null)
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  size: 18,
+                ),
+              const SizedBox(
+                width: PSizes.sm,
+              ),
+            ],
           )
-      ],
+          // subtitle: addSubtitle
+          //     ? Text(
+          //         title,
+          //         style: Theme.of(context).textTheme.labelMedium,
+          //       )
+          //     : null,
+          // if (addSpacing)
+        ],
+      ),
     );
   }
 }

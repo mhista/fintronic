@@ -1,9 +1,9 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:fintronic/common/widgets/icons/circular_icon.dart';
-import 'package:fintronic/features/main/analytics/analytics.dart';
-import 'package:fintronic/features/main/discover/discover.dart';
-import 'package:fintronic/features/main/exchange/exchange.dart';
-import 'package:fintronic/features/main/profile/profile.dart';
+import 'package:fintronic/features/analytics/analytics.dart';
+import 'package:fintronic/features/discover/screens/discover.dart';
+import 'package:fintronic/features/exchange/exchange.dart';
+import 'package:fintronic/features/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -65,7 +65,7 @@ class NavigationMenu extends StatelessWidget {
                   label: 'Discover'),
               const NavigationDestination(
                 icon: Icon(Iconsax.user),
-                label: 'Profile',
+                label: 'Account',
                 selectedIcon: Icon(EvaIcons.person),
               ),
             ]),
