@@ -19,9 +19,12 @@ class UrgentNotification extends StatelessWidget {
       children: [
         TRoundedContainer(
           height: 115,
-          width: 330,
-          showBorder: true,
+          // width: 330,
+          // showBorder: true,
           borderColor: PColors.primary.withOpacity(0.1),
+          useContainerGradient: false,
+          backgroundColor: PColors.primary.withOpacity(0.05),
+
           child: Row(
             children: [
               const PRoundedImage(

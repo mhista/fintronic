@@ -50,12 +50,12 @@ class HomeScreen extends StatelessWidget {
                 height: PSizes.spaceBtwSections,
               ),
               // BALANCE CONTAINER
-              SlideAnimation(child: BalanceWidget(isDark: isDark)),
+              BalanceWidget(isDark: isDark),
               const SizedBox(
                 height: PSizes.spaceBtwSections,
               ),
               // URGENT NOTIFICATION
-              const SlideAnimation(child: UrgentNotification()),
+              const UrgentNotification(),
               const SizedBox(
                 height: PSizes.sm,
               ),

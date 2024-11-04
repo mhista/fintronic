@@ -3,7 +3,7 @@ import 'package:fintronic/common/widgets/icons/circular_icon.dart';
 import 'package:fintronic/features/analytics/analytics.dart';
 import 'package:fintronic/features/discover/screens/discover.dart';
 import 'package:fintronic/features/exchange/exchange.dart';
-import 'package:fintronic/features/profile/profile.dart';
+import 'package:fintronic/features/personalization/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';

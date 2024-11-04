@@ -3,6 +3,7 @@ import 'package:fintronic/common/widgets/icons/glass_icon.dart';
 import 'package:fintronic/features/main/home/anime.dart';
 import 'package:fintronic/features/main/transaction/request/screens/request_money.dart';
 import 'package:fintronic/features/main/transaction/transfer/screens/transfer.dart';
+import 'package:fintronic/features/personalization/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glass_kit/glass_kit.dart';
@@ -25,13 +26,14 @@ class BalanceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final accountController = Get.put(AccountController());
     return TRoundedContainer(
       // elevation: 0.6,
-
+      useContainerGradient: false,
       padding: const EdgeInsets.symmetric(vertical: PSizes.spaceBtwSections),
-      height: 243,
-      width: 330,
-      // backgroundColor: PColors.primary.withOpacity(0.15),
+      height: 240,
+      // width: 330,
+      backgroundColor: PColors.primary.withOpacity(0.05),
       child: Column(
         children: [
           // BALANCE INFORMATION
@@ -50,13 +52,22 @@ class BalanceWidget extends StatelessWidget {
                     const SizedBox(
                       width: PSizes.sm,
                     ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: const Icon(
-                        Iconsax.eye,
-                        size: 17,
-                      ),
-                    )
+                    Obx(() {
+                      return GestureDetector(
+                        onTap: () {
+                          debugPrint(
+                              accountController.hideBalance.value.toString());
+                          accountController.hideBalance.value =
+                              !accountController.hideBalance.value;
+                        },
+                        child: Icon(
+                          !accountController.hideBalance.value
+                              ? Iconsax.eye
+                              : Iconsax.eye_slash,
+                          size: 17,
+                        ),
+                      );
+                    })
                   ],
                 ),
                 const SizedBox(
@@ -65,17 +76,26 @@ class BalanceWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      '\$182,155',
-                      style: Theme.of(context).textTheme.displaySmall,
-                    ),
-                    Text(
-                      '.00',
-                      style: Theme.of(context)
-                          .textTheme
-                          .displaySmall!
-                          .apply(color: PColors.darkGrey.withOpacity(0.7)),
-                    ),
+                    Obx(() {
+                      return Text(
+                        !accountController.hideBalance.value
+                            ? '\$10,155'
+                            : '*****',
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall!
+                            .apply(fontSizeDelta: -2),
+                      );
+                    }),
+                    Obx(() {
+                      return Text(
+                        !accountController.hideBalance.value ? '.00' : '',
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall!
+                            .apply(color: PColors.darkGrey.withOpacity(0.7)),
+                      );
+                    }),
                     const SizedBox(
                       width: PSizes.sm,
                     ),
@@ -102,22 +122,38 @@ class BalanceWidget extends StatelessWidget {
                 const SizedBox(
                   height: PSizes.sm,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      '(+12.50%) ',
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelMedium!
-                          .apply(color: PColors.success, fontWeightDelta: 2),
-                    ),
-                    Text(
-                      ' since last month',
-                      style: Theme.of(context).textTheme.labelMedium,
-                    ),
-                  ],
-                )
+                Obx(() {
+                  return accountController.hideBalance.value
+                      ? Row(
+                          children: [
+                            Text(
+                              '******',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium!
+                                  .apply(fontWeightDelta: 2),
+                            ),
+                          ],
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              '(+12.50%) ',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium!
+                                  .apply(
+                                      color: PColors.success,
+                                      fontWeightDelta: 2),
+                            ),
+                            Text(
+                              ' since last month',
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ),
+                          ],
+                        );
+                })
               ],
             ),
           ),

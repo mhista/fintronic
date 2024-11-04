@@ -10,7 +10,7 @@ class TRoundedContainer extends StatelessWidget {
     super.key,
     this.width,
     this.height,
-    this.radius = PSizes.iconLg,
+    this.radius = PSizes.iconMd,
     this.backgroundColor,
     this.borderColor = PColors.borderPrimary,
     this.child,

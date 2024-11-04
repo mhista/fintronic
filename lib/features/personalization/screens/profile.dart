@@ -6,9 +6,9 @@ import 'package:fintronic/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../common/widgets/buttons/switch_button.dart';
-import '../../common/widgets/images/edge_rounded_images.dart';
-import '../../utils/constants/colors.dart';
+import '../../../common/widgets/buttons/switch_button.dart';
+import '../../../common/widgets/images/edge_rounded_images.dart';
+import '../../../utils/constants/colors.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
